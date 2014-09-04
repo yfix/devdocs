@@ -6,8 +6,16 @@ app.templates.newsPage = ->
       <div class="_news">#{app.templates.newsList app.news}</div> """
 
 app.templates.newsList = (news) ->
+  year = new Date().getUTCFullYear()
   result = ''
-  result += newsItem new Date(value[0]), value[1..] for value in news
+
+  for value in news
+    date = new Date(value[0])
+    if year isnt date.getUTCFullYear()
+      year = date.getUTCFullYear()
+      result += "<h4>#{year}</h4>"
+    result += newsItem(date, value[1..])
+
   result
 
 MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
@@ -24,7 +32,28 @@ newsItem = (date, news) ->
   result
 
 app.news = [
-  [ 1399161600000, # May 4, 2014
+  [ 1407110400000, # August 4, 2014
+    """ New <a href="/django/">Django</a> documentation """,
+  ], [
+    1406419200000, # July 27, 2014
+    """ New <a href="/markdown/">Markdown</a> documentation """,
+  ], [
+    1404518400000, # July 5, 2014
+    """ New <a href="/cordova/">Cordova</a> documentation """,
+  ], [
+    1404172800000, # July 1, 2014
+    """ New <a href="/chai/">Chai</a> and <a href="/sinon/">Sinon</a> documentations """,
+  ], [
+    1402790400000, # June 15, 2014
+    """ New <a href="/requirejs/">RequireJS</a> documentation """,
+  ], [
+    1402704000000, # June 14, 2014
+    """ New <a href="/haskell/">Haskell</a> documentation """,
+  ], [
+    1400976000000, # May 25, 2014
+    """ New <a href="/laravel/">Laravel</a> documentation """,
+  ], [
+    1399161600000, # May 4, 2014
     """ New <a href="/express/">Express</a>, <a href="/grunt/">Grunt</a>, and <a href="/maxcdn/">MaxCDN</a> documentations """,
   ], [
     1396742400000, # April 6, 2014

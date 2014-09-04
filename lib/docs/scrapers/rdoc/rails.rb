@@ -19,7 +19,7 @@ module Docs
 
     self.name = 'Ruby on Rails'
     self.slug = 'rails'
-    self.version = '4.1.0'
+    self.version = '4.1.4'
     self.dir = '/Users/Thibaut/DevDocs/Docs/RDoc/Rails'
 
     html_filters.replace 'rdoc/entries', 'rails/entries'
@@ -72,9 +72,8 @@ module Docs
       /\AActionController\/Caching(?!\/Fragments|\.)/,
       /\AActionController\/HideActions/,
       /\AActionController\/RequestForgeryProtection\/ProtectionMethods/,
-      /\AActionController\/Test/,
+      /\AActionController\/Testing/,
       /\AActionDispatch\/RemoteIp/,
-      /\AActionDispatch\/Test/,
       /\AActionView\/LookupContext/,
       /\AActionView\/Resolver/,
       /\AActiveRecord\/ConnectionAdapters\/(?!DatabaseStatements|SchemaStatements|Table)/,

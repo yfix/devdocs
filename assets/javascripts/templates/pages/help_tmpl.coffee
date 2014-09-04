@@ -1,4 +1,5 @@
-ctrlKey = if navigator.userAgent.indexOf 'Mac OS X' then 'cmd' else 'ctrl'
+ctrlKey = if $.isMac() then 'cmd' else 'ctrl'
+navKey = if $.isWindows() then 'alt' else ctrlKey
 
 app.templates.helpPage = """
   <div class="_toc">
@@ -35,7 +36,7 @@ app.templates.helpPage = """
             in the omnibox (to set a custom keyword, click <em>Manage search engines\u2026</em> in Chrome's settings).
         <li>On Firefox, open the search engine list (icon in the search bar) and select <em>Add "DevDocs Search"</em>.
             DevDocs is now available in the search bar. You can also search from the location bar by following
-            <a href="https://support.mozilla.org/en-US/kb/search-bar-easily-choose-your-search-engine#w_keywords">these instructions</a>.
+            <a href="https://support.mozilla.org/en-US/kb/how-search-from-address-bar">these instructions</a>.
   </dl>
 
   <h2 class="_lined-heading" id="shortcuts">Keyboard Shortcuts</h2>
@@ -59,8 +60,8 @@ app.templates.helpPage = """
   <h3 class="_shortcuts-title">Navigation</h3>
   <dl class="_shortcuts-dl">
     <dt class="_shortcuts-dt">
-      <code class="_shortcut-code">#{ctrlKey} + &larr;</code>
-      <code class="_shortcut-code">#{ctrlKey} + &rarr;</code>
+      <code class="_shortcut-code">#{navKey} + &larr;</code>
+      <code class="_shortcut-code">#{navKey} + &rarr;</code>
     <dd class="_shortcuts-dd">Go back/forward
     <dt class="_shortcuts-dt">
       <code class="_shortcut-code">alt + &darr;</code>
@@ -78,7 +79,7 @@ app.templates.helpPage = """
   <h3 class="_shortcuts-title">Misc</h3>
   <dl class="_shortcuts-dl">
     <dt class="_shortcuts-dt">
-      <code class="_shortcut-code">alt + &rarr;</code>
+      <code class="_shortcut-code">alt + f</code>
     <dd class="_shortcuts-dd">Focus first link in the content area<br>(press tab to focus the other links)
     <dt class="_shortcuts-dt">
       <code class="_shortcut-code">alt + r</code>

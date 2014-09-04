@@ -69,6 +69,8 @@
     docs = @settings.getDocs()
     for doc in @DOCS
       (if docs.indexOf(doc.slug) >= 0 then @docs else @disabledDocs).add(doc)
+    @docs.sort()
+    @disabledDocs.sort()
     @docs.load @start.bind(@), @onBootError.bind(@), readCache: true, writeCache: true
     delete @DOCS
     return
@@ -154,7 +156,7 @@
         classList:          !!document.body.classList
         insertAdjacentHTML: !!document.body.insertAdjacentHTML
         defaultPrevented:     document.createEvent('CustomEvent').defaultPrevented is false
-        cssGradients:         getComputedStyle(document.querySelector('._header')).backgroundImage isnt 'none'
+        cssGradients:         supportsCssGradients()
 
       for key, value of features when not value
         Raven.captureMessage "unsupported/#{key}"
@@ -177,5 +179,10 @@
 
   isInvalidLocation: ->
     @config.env is 'production' and location.host.indexOf(app.config.production_host) isnt 0
+
+supportsCssGradients = ->
+  el = document.createElement('div')
+  el.style.cssText = "background-image: -webkit-linear-gradient(top, #000, #fff); background-image: linear-gradient(to top, #000, #fff);"
+  el.style.backgroundImage.indexOf('gradient') >= 0
 
 $.extend app, Events

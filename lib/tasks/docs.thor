@@ -134,6 +134,11 @@ class DocsCLI < Thor
   end
 
   def download_docs(docs)
+    # Don't allow downloaded files to be created as StringIO
+    require 'open-uri'
+    OpenURI::Buffer.send :remove_const, 'StringMax' if OpenURI::Buffer.const_defined?('StringMax')
+    OpenURI::Buffer.const_set 'StringMax', 0
+
     require 'thread'
     length = docs.length
     i = 0
@@ -144,8 +149,8 @@ class DocsCLI < Thor
           status = begin
             download_doc(doc)
             'OK'
-          rescue OpenURI::HTTPError => error
-            "FAILED (#{error.message})"
+          rescue => e
+            "FAILED (#{e.class}: #{e.message})"
           end
           puts "(#{i += 1}/#{length}) #{doc.name} #{status}"
         end
