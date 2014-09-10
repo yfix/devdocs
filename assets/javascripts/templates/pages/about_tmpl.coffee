@@ -24,7 +24,7 @@ app.templates.aboutPage = -> """
     <li>Join the <a href="https://groups.google.com/d/forum/devdocs">mailing list</a>
   </ul>
   <p class="_note _note-green">If you like DevDocs, please consider funding the project on
-    <a href="https://www.gittip.com/Thibaut/">Gittip</a>. Thanks!<br>
+    <a href="https://gratipay.com/Thibaut/">Gratipay</a>. Thanks!<br>
 
   <h2 class="_lined-heading" id="credits">Credits</h2>
 
@@ -109,7 +109,7 @@ credits = [
     'https://raw.githubusercontent.com/apache/cordova-docs/master/LICENSE'
   ], [
     'CSS<br>DOM<br>HTML<br>JavaScript',
-    '2005-2013 Mozilla Developer Network and individual contributors',
+    '2005-2014 Mozilla Developer Network and individual contributors',
     'CC BY-SA',
     'http://creativecommons.org/licenses/by-sa/2.5/'
   ], [

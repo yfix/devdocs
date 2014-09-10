@@ -10,11 +10,9 @@ module Docs
     # Don't want
     options[:skip] = %w(
       /App
-      /Apps
       /CallEvent
       /CanvasPixelArray
       /ChromeWorker
-      /ContactManager
       /document.createProcessingInstruction
       /document.documentURIObject
       /document.loadOverlay
@@ -26,6 +24,7 @@ module Docs
       /Event/Comparison_of_Event_Targets
       /FMRadio
       /IDBDatabaseException
+      /IndexedDB_API/Using_JavaScript_Generators_in_Firefox
       /NamedNodeMap
       /Node.baseURIObject
       /Node.nodePrincipal
@@ -33,9 +32,10 @@ module Docs
       /PowerManager
       /PushManager
       /ProcessingInstruction
-      /select.type
       /TCPServerSocket
       /TCPSocket
+      /TypeInfo
+      /Web_Video_Text_Tracks_Format
       /WifiManager
       /window.controllers
       /window.crypto
@@ -47,9 +47,7 @@ module Docs
       /window.navigator.removeIdleObserver
       /window.navigator.requestWakeLock
       /window.updateCommands
-      /window.pkcs11
-      /XMLDocument
-      /XMLHttpRequest/Using_XMLHttpRequest)
+      /window.pkcs11)
 
     options[:skip_patterns] = [
       /NS/,
@@ -57,20 +55,25 @@ module Docs
       /moz/i,
       /gecko/i,
       /webkit/i,
+      /gamepad/i,
+      /UserData/,
       /\A\/Camera/,
       /\A\/DeviceStorage/,
       /\A\/document\.xml/,
+      /\A\/XMLDocument/,
       /\A\/DOMCursor/,
       /\A\/DOMRequest/,
       /\A\/element\.on/,
       /\A\/Entity/,
-      /\A\/HTMLIFrameElement\./,
       /\A\/navigator\.id/i,
       /\A\/Settings/,
       /\A\/Telephony/,
       /\A\/Bluetooth/,
-      /UserData/,
-      /\A\/Window\.\w+bar/i]
+      /\A\/Window\.\w+bar/i,
+      /\A\/Apps/,
+      /\A\/Contact/,
+      /\A\/L10n/,
+      /\A\/Permission/]
 
     # Broken / Empty
     options[:skip].concat %w(
@@ -86,7 +89,13 @@ module Docs
       /Window.QueryInterface)
 
     # Duplicates
-    options[:skip].concat %w(/Reference)
+    options[:skip].concat %w(
+      /Reference
+      /Index
+      /form.elements
+      /select.type
+      /table.rows
+      /XMLHttpRequest/FormData)
 
     options[:fix_urls] = ->(url) do
       return if url.include?('_') || url.include?('?')
@@ -99,6 +108,11 @@ module Docs
       url.sub! "#{Dom.base_url}/notification",                  "#{Dom.base_url}/Notification"
       url.sub! "#{Dom.base_url}/range",                         "#{Dom.base_url}/Range"
       url.sub! "#{Dom.base_url}/Window",                        "#{Dom.base_url}/window"
+      url.sub! "#{Dom.base_url}/window.navigator",              "#{Dom.base_url}/navigator"
+      url.sub! "#{Dom.base_url}/Selection/",                    "#{Dom.base_url}/Selection."
+      url.sub! "#{Dom.base_url}/windowTimers",                  "#{Dom.base_url}/window"
+      url.sub! "#{Dom.base_url}/windowEventHandlers",           "#{Dom.base_url}/window"
+      url.sub! "#{Dom.base_url}/Screen.",                       "#{Dom.base_url}/window.screen"
       url
     end
   end
